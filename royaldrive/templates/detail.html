@@ -2,6 +2,8 @@
 {%load static%}
 
 {%block main_block%}
+<div class="bg-dark" style="height: 80px;"> <span>|</span></div>
+
 <section class="ftco-section ftco-about">
   <div class="container">
     <div class="row no-gutters">
@@ -28,8 +30,13 @@
             </p>
           </div>
 
+          <form action="{%url 'favorite' data.id%}" method="post">
+            {%csrf_token%}
+            
+            <button type="submit" class="btn-primary  px-1" style="height: 30px;">Add To Wishlist</button>
+          </form>
 
-          <p><a href="#" class="btn btn-primary py-3 px-4">Search Vehicle</a></p>
+
         </div>
       </div>
     </div>

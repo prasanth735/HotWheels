@@ -28,6 +28,6 @@ urlpatterns = [
     path('detail/<int:pk>/',views.DeatilView.as_view(),name="detail"),
     path('car/<int:pk>/addtofavorite',views.AddtofavoriteView.as_view(),name="favorite"),
     path('car/favorite',views.FavoriteListView.as_view(),name="favorite-list"),
-    path('car/<int:pk>/delete',views.favoriteremoveView.as_view(),name="favorite-remove")
+    path('car/<int:pk>/delete',views.FavoriteremoveView.as_view(),name="favorite-remove")
     
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

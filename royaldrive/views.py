@@ -77,7 +77,7 @@ class FavoriteListView(View):
 
 
 
-class favoriteremoveView(View):
+class FavoriteremoveView(View):
     def get(self,request,*args,**kwargs):
         id=kwargs.get("pk")
         favouriteItem.objects.get(id=id).delete()
