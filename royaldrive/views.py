@@ -3,7 +3,7 @@ from django.views.generic import View
 from royaldrive.forms import RegistrationForm,SigninForm
 from django.contrib.auth import login,logout,authenticate
 from django.contrib import messages
-from royaldrive.models import Car
+from royaldrive.models import Car,favouriteItem,favourites
 
 # Create your views here.
 
@@ -12,14 +12,14 @@ class SignupView(View):
     
     def get(self,request,*args,**kwargs):
         form=RegistrationForm
-        return render (request,"login.html",{"form":form})
+        return render (request,"signup.html",{"form":form})
     
     def post(self,request,*args,**kwargs):
         form=RegistrationForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect("signin")
-        return render (request,"login.html",{"form":form})
+        return render (request,"signup.html",{"form":form})
     
 
 class SigninView(View):
@@ -54,7 +54,31 @@ class DeatilView(View):
         return render(request,"detail.html",{"data":qs})
 
 
+class AddtofavoriteView(View):
+    def post(self,request,*args,**kwargs):
+        id=kwargs.get("pk")
+        car_obj=Car.objects.get(id=id)
+        favouriteItem.objects.create(
+            car_object=car_obj,
+            basket_object=request.user.cart
+        )
+
+        return redirect("index")
+        
+
+
+class FavoriteListView(View):
+
+    def get(self,request,*args,**kwargs):
+        qs=request.user.cart.cartitem.all()
+
+
+        return render(request,"favorites.html",{"data":qs})
 
 
 
-
+class favoriteremoveView(View):
+    def get(self,request,*args,**kwargs):
+        id=kwargs.get("pk")
+        favouriteItem.objects.get(id=id).delete()
+        return redirect ("favorite-list")
