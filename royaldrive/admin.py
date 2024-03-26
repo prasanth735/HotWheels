@@ -1,5 +1,5 @@
 from django.contrib import admin
-from royaldrive.models import Brand,Car,Fuel,favouriteItem,favourites
+from royaldrive.models import Brand,Car,Fuel,FavouriteItem,Favourites
 
 # Register your models here.
 
@@ -7,5 +7,5 @@ from royaldrive.models import Brand,Car,Fuel,favouriteItem,favourites
 admin.site.register(Brand)
 admin.site.register(Car)
 admin.site.register(Fuel)
-admin.site.register(favouriteItem)
-admin.site.register(favourites)
+admin.site.register(FavouriteItem)
+admin.site.register(Favourites)

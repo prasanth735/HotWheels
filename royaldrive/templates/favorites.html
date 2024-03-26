@@ -5,30 +5,45 @@
 <div class="bg-dark" style="height: 80px;"> <span>|</span></div>
 
 <div class="row">
-  <div class="col-3"></div>
-<div class="col-6 text-center"><h3>Wishlist</h3></div>
-<div class="col-3"></div>
+  <div class="col-4"></div>
+<div class="col-8"><h3>WISHLIST</h3></div>
+
   </div>
 
 {%for p in data%}
 <section class="ftco-section ftco-intro mb-3 mt-3" style="height: 300px;" >
   <div class="overlay"></div>
-  <div class="container">
-    <div class="row justify-content-end">
-      <img src="{{p.car_object.image.url}}" style="height: 200px; margin-left:auto; margin-bottom: auto;" alt="">
+    <div class="container">
+      <div class="row justify-content-end">
+        <img src="{{p.car_object.image.url}}" style="height: 200px; margin-left:auto; margin-bottom: auto;" alt="">
+  
+        <div class="col-md-6 heading-section heading-section-white ftco-animate">
+           <!-- <h2 class="mb-3">Do You Want To Earn With Us? So Don't Be Late.</h2>  -->
+          <span class="text-white">{{p.car_object.brand_object}}</span>
+          <h3 class="w-100">{{p.car_object.name}}</h3>
+          <h4>₹.{{p.car_object.price}}</h4>
+          <!-- <a href="{%url 'detail' p.id%}" class="btn btn-primary btn-lg">Detail</a> -->
+          <!-- <p><a href="{%url 'detail' p.id%}" class="btn btn-primary">know more</a></p> -->
 
-      <div class="col-md-6 heading-section heading-section-white ftco-animate">
-        <!-- <h2 class="mb-3">Do You Want To Earn With Us? So Don't Be Late.</h2> -->
-        <span class="text-white">{{p.car_object.brand_object}}</span>
-        <h3 class="w-100">{{p.car_object.name}}</h3>
-        <h4>₹.{{p.car_object.price}}</h4>
-        <a href="#" class="btn btn-primary btn-lg">Book Now</a>
-        <a href="{%url 'favorite-remove' p.id%}" class="btn btn-danger btn-lg">Remove</a>
+          <a href="{%url 'favorite-remove' p.id%}" class="btn btn-danger btn-lg">Remove</a>
+        </div>
       </div>
     </div>
-  </div>
 </section>
-{%endfor%} 
+
+{%endfor%}
+
+<div class="col-4"></div>
+<div class="col-4"><a href="{%url 'checkout'%}" class="btn btn-outline-success">Procced to Book</a></div>
+<div class="col-4"></div>
+
+
+
+
+
+
+
+            
 
  
 

@@ -44,16 +44,16 @@ class Car(models.Model):
         return self.name  
 
 
-class favourites(models.Model):
+class Favourites(models.Model):
     owner=models.OneToOneField(User,on_delete=models.CASCADE,related_name="cart")
     created_date=models.DateTimeField(auto_now_add=True)
     updated_date=models.DateTimeField(auto_now=True)
     is_active=models.BooleanField(default=True)
 
 
-class favouriteItem(models.Model):
+class FavouriteItem(models.Model):
     car_object=models.ForeignKey(Car,on_delete=models.CASCADE)
-    basket_object=models.ForeignKey(favourites,on_delete=models.CASCADE,related_name="cartitem")
+    basket_object=models.ForeignKey(Favourites,on_delete=models.CASCADE,related_name="cartitem")
     created_date=models.DateTimeField(auto_now_add=True)
     updated_date=models.DateTimeField(auto_now=True)
     is_active=models.BooleanField(default=True)
@@ -63,9 +63,24 @@ class favouriteItem(models.Model):
 
 def create_basket(sender,instance,created,**kwargs):
     if created:
-        favourites.objects.create(owner=instance)
+        Favourites.objects.create(owner=instance)
 
 post_save.connect(create_basket,sender=User)
 
 
 
+class Order(models.Model):
+
+    user_object=models.ForeignKey(User,on_delete=models.CASCADE,related_name="purchase")
+    phone=models.CharField(max_length=12)
+    email=models.CharField(max_length=200,null=True)
+    is_paid=models.BooleanField(default=False)
+    order_id=models.CharField(max_length=200,null=True)
+    
+    
+
+
+
+class OrderItems(models.Model):
+    order_object=models.ForeignKey(Order,on_delete=models.CASCADE,related_name="purchaseitems")
+    basket_item_object=models.ForeignKey(FavouriteItem,on_delete=models.CASCADE)

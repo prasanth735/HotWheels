@@ -1,9 +1,10 @@
 from django.shortcuts import render,redirect
 from django.views.generic import View
-from royaldrive.forms import RegistrationForm,SigninForm
 from django.contrib.auth import login,logout,authenticate
 from django.contrib import messages
-from royaldrive.models import Car,favouriteItem,favourites
+
+from royaldrive.forms import RegistrationForm,SigninForm
+from royaldrive.models import Car,FavouriteItem,Favourites
 
 # Create your views here.
 
@@ -58,7 +59,7 @@ class AddtofavoriteView(View):
     def post(self,request,*args,**kwargs):
         id=kwargs.get("pk")
         car_obj=Car.objects.get(id=id)
-        favouriteItem.objects.create(
+        FavouriteItem.objects.create(
             car_object=car_obj,
             basket_object=request.user.cart
         )
@@ -72,13 +73,18 @@ class FavoriteListView(View):
     def get(self,request,*args,**kwargs):
         qs=request.user.cart.cartitem.all()
 
-
         return render(request,"favorites.html",{"data":qs})
 
-
-
+    
 class FavoriteremoveView(View):
     def get(self,request,*args,**kwargs):
         id=kwargs.get("pk")
-        favouriteItem.objects.get(id=id).delete()
+        FavouriteItem.objects.get(id=id).delete()
         return redirect ("favorite-list")
+    
+
+class CheckoutView(View):
+    
+    def get(self,request,*args,**kwargs):
+        return render(request,"checkout.html")
+        
