@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+
+{%for o in data%}
+
+    {%if o.get_order_items%}
+
+    <div class="mx-auto my-4 max-w-4xl md:my-6">
+        <div class="overflow-hidden rounded-xl border border-gray-100 shadow">
+          <div class="grid grid-cols-1 md:grid-cols-2">
+            <div class="px-5 py-6 md:border-r md:border-r-gray-200 md:px-8">
+              <div class="flow-root">
+                <ul class="-my-7 divide-y divide-gray-200">
+                  <!-- iterate order items -->
+                    {%for oi in o.get_order_items%}
+    
+                    <li class="flex items-stretch justify-between space-x-5 py-7">
+                        <div class="flex flex-1 items-stretch">
+                          <div class="flex-shrink-0">
+                            <img
+                              class="h-20 w-20 rounded-lg border border-gray-200 object-contain"
+                              src="{{oi.basket_item_object.car_object.image.url}}"
+                              alt=""
+                            />
+                          </div>
+                          <div class="ml-5 flex flex-col justify-between">
+                            <div class="flex-1">
+                              <p class="text-sm font-bold text-gray-900">
+                                {{request.user}}
+                              </p>
+                              
+                              <p class="text-sm font-bold text-gray-900">
+                                {{oi.basket_item_object.car_object.name}}
+                              </p>
+                              <p class="mt-1.5 text-sm font-medium text-gray-600">
+                                 {{oi.basket_item_object.car_object.brand_object}}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                        
+                      </li>
+                    {%endfor%}
+                  <!-- end iteration -->
+                  
+                </ul>
+                <hr class="mt-6 border-gray-200" />
+                <ul class="mt-6 space-y-3">
+                  <li class="flex items-center justify-between">
+                    <!-- <p class="text-sm font-medium">Sub total</p> -->
+                    <!-- <p class="text-sm font-medium">{{o.get_order_total}}</p> -->
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="px-5 py-6 md:px-8">
+              <div class="flow-root">
+                <div class="-my-6 divide-y divide-gray-200">
+                  <div class="py-6">
+                    <h2 class="text-base font-bold text-black">
+                      Contact Information
+                    </h2>
+                    <p class="fontmedium mt-3 text-xs text-gray-700">
+                      Order Number: #9876567890
+                    </p>
+                    <p class="text-xs font-medium text-gray-700">
+                      Date: March 03, 2023
+                    </p>
+                  </div>
+                  <div class="py-6">
+                    <h2 class="mb-2 text-base font-bold text-black">
+                      Shipping Information
+                    </h2>
+                    <p class="mt-3 text-xs font-medium text-gray-700">email: {{o.email}}</p>
+                    <p class="text-xs font-medium text-gray-700">
+                      <!-- {{o.delivery_address}} -->
+                    </p>
+                    <p class="text-xs font-medium text-gray-700">phone: {{o.phone}}</p>
+                  </div>
+                  <div class="py-6">
+                    <h2 class="text-base font-bold text-black">
+                      Payment Information
+                    </h2>
+                    <p class="mt-3 text-xs font-medium text-gray-700">
+                      **** **** **** 6202
+                    </p>
+                    <p class="text-xs font-medium text-gray-700">Expires 09/25</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    {%endif%}
+  
+{%endfor%}
+
+
+
+</body>
+</html>

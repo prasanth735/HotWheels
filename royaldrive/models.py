@@ -50,6 +50,14 @@ class Favourites(models.Model):
     updated_date=models.DateTimeField(auto_now=True)
     is_active=models.BooleanField(default=True)
 
+    @property
+    def cart_items(self):
+        return self.cartitem.filter(is_item_booked=False)
+    
+
+    def get_fav_car(self):
+
+        return self.cartitem.values("car_object")
 
 class FavouriteItem(models.Model):
     car_object=models.ForeignKey(Car,on_delete=models.CASCADE)
@@ -57,6 +65,8 @@ class FavouriteItem(models.Model):
     created_date=models.DateTimeField(auto_now_add=True)
     updated_date=models.DateTimeField(auto_now=True)
     is_active=models.BooleanField(default=True)
+    is_item_booked=models.BooleanField(default=False)
+
 
 
 
@@ -76,8 +86,16 @@ class Order(models.Model):
     email=models.CharField(max_length=200,null=True)
     is_paid=models.BooleanField(default=False)
     order_id=models.CharField(max_length=200,null=True)
-    
-    
+    option=(
+        ("booked","booked"),
+        ("delivered","delivered"),
+        ("cancelled","cancelled")
+    )
+    status=models.CharField(max_length=200,choices=option,default="booked")
+
+    @property
+    def get_order_items(self):
+        return self.purchaseitems.all()    
 
 
 

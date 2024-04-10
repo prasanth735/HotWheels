@@ -29,6 +29,13 @@ urlpatterns = [
     path('car/<int:pk>/addtofavorite',views.AddtofavoriteView.as_view(),name="favorite"),
     path('car/favorite',views.FavoriteListView.as_view(),name="favorite-list"),
     path('car/<int:pk>/delete',views.FavoriteremoveView.as_view(),name="favorite-remove"),
-    path("checkout/",views.CheckoutView.as_view(),name="checkout")
+    path("checkout/",views.CheckoutView.as_view(),name="checkout"),
+    path("payment/verification",views.PaymentVerificationView.as_view(),name="verification"),
+    path("summary/",views.Order_summaryView.as_view(),name="summary"),
+    path("logout/",views.Logoutview.as_view(),name="logout"),
+    # path("directcheckout/",views.DirectCheckoutView.as_view(),name="directbook"),
+
+
+
     
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
