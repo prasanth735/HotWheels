@@ -1,5 +1,5 @@
-KEY_ID=""
-KEY_SECRET=""
+KEY_ID="rzp_test_bpoOazMwfRh4d0"
+KEY_SECRET="m1FBEcM6CUYToGTeXrhcFAMw"
 
 
 from django.shortcuts import render,redirect
@@ -74,14 +74,13 @@ class AddtofavoriteView(View):
         id=kwargs.get("pk")
         car_obj=Car.objects.get(id=id)
 
-        # fav_cars=[ c for c in request.user.cart.cartitem.get_fav_items]
 
 
-        # if car_obj in fav_cars:
+        if car_obj in request.user.cart.get_fav_car:
 
-        #     messages.error(request,"car already exist")
-        #     return redirect("index")
-        # else:
+            messages.error(request,"car already exist")
+            return redirect("index")
+    
 
         FavouriteItem.objects.create(
             car_object=car_obj,

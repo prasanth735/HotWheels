@@ -54,10 +54,11 @@ class Favourites(models.Model):
     def cart_items(self):
         return self.cartitem.filter(is_item_booked=False)
     
-
+    @property
     def get_fav_car(self):
+        car=[c.car_object for c in FavouriteItem.objects.all()]
 
-        return self.cartitem.values("car_object")
+        return car
 
 class FavouriteItem(models.Model):
     car_object=models.ForeignKey(Car,on_delete=models.CASCADE)
