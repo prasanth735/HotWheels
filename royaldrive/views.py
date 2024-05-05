@@ -1,5 +1,5 @@
-KEY_ID="rzp_test_bpoOazMwfRh4d0"
-KEY_SECRET="m1FBEcM6CUYToGTeXrhcFAMw"
+KEY_ID=""
+KEY_SECRET=""
 
 
 from django.shortcuts import render,redirect
