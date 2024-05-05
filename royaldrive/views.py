@@ -1,5 +1,5 @@
-KEY_ID=""
-KEY_SECRET=""
+KEY_ID="rzp_test_bpoOazMwfRh4d0"
+KEY_SECRET="m1FBEcM6CUYToGTeXrhcFAMw"
 
 
 from django.shortcuts import render,redirect
@@ -76,9 +76,8 @@ class AddtofavoriteView(View):
 
 
 
-        if car_obj in request.user.cart.get_fav_car:
+        if car_obj in request.user.cart.get_fav_car or car_obj.is_sold:
 
-            messages.error(request,"car already exist")
             return redirect("index")
     
 
@@ -142,27 +141,30 @@ class CheckoutView(View):
                     basket_item_object=bi
                 )
                 bi.is_item_booked=True
-                bi.car_object.is_sold=True
                 bi.save()
+
+                bi.car_stat.is_sold=True
+
 
         except:
             order_obj.delete()
 
 
         finally:
+            if order_obj:
+                client = razorpay.Client(auth=(KEY_ID, KEY_SECRET))
 
-            client = razorpay.Client(auth=(KEY_ID, KEY_SECRET))
-            data = { "amount": 2000*100, "currency": "INR", "receipt": "order_rcptid_11" }
-            payment = client.order.create(data=data)
-            order_obj.order_id=payment.get("id")
-            order_obj.save()
-            print(payment)
-            context={
-                "key":KEY_ID,
-                "order_id":payment.get("id"),
-                "amount":payment.get("amount")
-            }
-            return render(request,"payment.html",{"context":context})
+                data = { "amount": 2000*100, "currency": "INR", "receipt": "order_rcptid_11" }
+                payment = client.order.create(data=data)
+                order_obj.order_id=payment.get("id")
+                order_obj.save()
+                print(payment)
+                context={
+                    "key":KEY_ID,
+                    "order_id":payment.get("id"),
+                    "amount":payment.get("amount")
+                }
+                return render(request,"payment.html",{"context":context})
         
     
             
@@ -187,7 +189,7 @@ class PaymentVerificationView(View):
         except:
             print("!!!!!!!!!!!!!!!!!!!!!transaction failed==================================")
 
-            return redirect("signin")
+            return redirect("index")
 
     
 

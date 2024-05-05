@@ -2,10 +2,10 @@
 {%load static%}
 <html lang="en">
   <head>
-    <title>Carbook - Free Bootstrap 4 Template by Colorlib</title>
+    <title>Carbook by BBT</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&sensor=false"></script>
     <link href="{%static 'https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap" rel="stylesheet'%}">
 
     <link rel="stylesheet" href="{%static 'css/open-iconic-bootstrap.min.css'%}">
@@ -39,10 +39,10 @@
 	        <ul class="navbar-nav ml-auto">
 
 	          <li class="nav-item"><a href="{%url 'index'%}" class="nav-link">Home</a></li>
-	          <li class="nav-item"><a href="" class="nav-link">Services</a></li>
-	          <li class="nav-item"><a href="" class="nav-link">Pricing</a></li>
-	          <li class="nav-item"><a href="{%url 'summary'%}" class="nav-link">Orders</a></li>
+	          <!-- <li class="nav-item"><a href="" class="nav-link">Services</a></li> -->
+	          <!-- <li class="nav-item"><a href="" class="nav-link">Pricing</a></li> -->
 	          <li class="nav-item"><a href="{%url 'favorite-list'%}" class="nav-link">Wishlist</a></li>
+	          <li class="nav-item"><a href="{%url 'summary'%}" class="nav-link">Orders</a></li>
 	          <li class="nav-item"><a href="{%url 'logout'%}" class="nav-link">Exit</a></li>
 	        </ul>
 	      </div>

@@ -54,6 +54,8 @@ class Favourites(models.Model):
     def cart_items(self):
         return self.cartitem.filter(is_item_booked=False)
     
+
+
     @property
     def get_fav_car(self):
         car=[c.car_object for c in FavouriteItem.objects.all()]
@@ -68,6 +70,10 @@ class FavouriteItem(models.Model):
     is_active=models.BooleanField(default=True)
     is_item_booked=models.BooleanField(default=False)
 
+    @property
+    def car_stat(self):
+
+        return self.car_object
 
 
 

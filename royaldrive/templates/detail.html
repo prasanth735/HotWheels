@@ -32,8 +32,15 @@
 
           <form action="{%url 'favorite' data.id%}" method="post">
             {%csrf_token%}
+
+            {%if data.is_sold%}
+            <button type="" class="btn btn-primary btn-lg" style="height: 40px;">Not Available</button>
+
+            {%else%}
             
             <button type="submit" class="btn btn-primary btn-lg" style="height: 40px;">Add To Wishlist</button>
+
+            {%endif%}
           </form>
 
 
