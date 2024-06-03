@@ -15,10 +15,14 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path,include
 from royaldrive import views
 from django.conf import settings
 from django.conf.urls.static import static
+
+
+
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -33,9 +37,8 @@ urlpatterns = [
     path("payment/verification",views.PaymentVerificationView.as_view(),name="verification"),
     path("summary/",views.Order_summaryView.as_view(),name="summary"),
     path("logout/",views.Logoutview.as_view(),name="logout"),
-    # path("directcheckout/",views.DirectCheckoutView.as_view(),name="directbook"),
 
-
+    path("api/v1/",include("api.urls"))
 
     
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

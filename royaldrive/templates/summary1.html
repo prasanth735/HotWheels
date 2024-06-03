@@ -23,12 +23,28 @@
 
       
 
-    <div class="col-8">
+    <div class="col-8 card">
        {%for o in data%}
+
+       <div class="card mt-3 ms-3 mb-3 p-2" style="max-width: 100%;">
+
+        <span class="text-black">
+           user: {{o.user_object}}
+        </span>
+
+
+          E-mail: {{o.email}}
+
+        <p>
+          Phone: {{o.phone}}
+        </p>
+
+       </div>
+
 
        {%for oi in o.get_order_items%}
 
-       <div class="card mt-3 ms-3 mb-3" style="max-width: 100%;">
+       <div class="card mt-2 ms-3 mb-3" style="max-width: 100%;">
         <div class="row g-0">
           <div class="col-md-4">
             <img src="{{oi.basket_item_object.car_object.image.url}}" class="img-fluid rounded-start w-100" alt="">

@@ -1,5 +1,5 @@
-KEY_ID=""
-KEY_SECRET=""
+KEY_ID="rzp_test_bpoOazMwfRh4d0"
+KEY_SECRET="m1FBEcM6CUYToGTeXrhcFAMw"
 
 
 from django.shortcuts import render,redirect
@@ -78,6 +78,7 @@ class AddtofavoriteView(View):
 
         if car_obj in request.user.cart.get_fav_car or car_obj.is_sold:
 
+            messages.error(request,"car can't add To Favorite")
             return redirect("index")
     
 
