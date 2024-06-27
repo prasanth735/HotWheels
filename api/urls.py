@@ -12,7 +12,8 @@ urlpatterns=[
     path("favoritelist",FavoriteCarlistApiView.as_view()),
     path("favorite/remove/<int:pk>",views.FavoriteCarRemoveView.as_view()),
     path("order",views.CheckoutView.as_view()),
-    path('payment/verification/',views.PaymentVerificationView.as_view())
+    path('payment/verification/',views.PaymentVerificationView.as_view()),
+    path("summary",views.OrderSummaryView.as_view())
 
 
 ]

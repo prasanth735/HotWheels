@@ -92,3 +92,24 @@ class FavoriteSerializer(serializers.ModelSerializer):
 
 
 
+
+
+
+class orderSerializer(serializers.ModelSerializer):
+    user_object=serializers.StringRelatedField()
+    class Meta:
+
+        model=Order
+        fields=["user_object","phone","email","is_paid","order_id","status"]
+        
+
+class OrderItemSerializer(serializers.ModelSerializer):
+
+    order_object=orderSerializer()
+    basket_item_object=FavoriteCarSerializer()
+    ()
+  
+
+    class Meta:
+        model=OrderItems
+        fields="__all__"

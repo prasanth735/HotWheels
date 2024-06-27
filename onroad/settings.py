@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'royaldrive',
     'api',
     'rest_framework',
-    'rest_framework.authtoken'
 ]
 
 MIDDLEWARE = [
